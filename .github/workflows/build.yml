@@ -5,6 +5,7 @@ on: [push]
 jobs:
   build:
     runs-on: windows-latest
+    if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v4
       - name: Setup dotnet
@@ -22,8 +23,6 @@ jobs:
         with:
           name: dotnet-results
           path: TestResults
-        # Use always() to always run this step to publish test results when there are test failures
-        if: ${{ always() }}
       - name: Upload library DLL
         uses: actions/upload-artifact@v4
         with:
