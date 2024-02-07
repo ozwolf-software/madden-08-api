@@ -6,19 +6,31 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-        - uses: actions/checkout@v4
-        - name: Setup dotnet
-          uses: actions/setup-dotnet@v3
-          with:
-              dotnet-version: '8.0.x'
-        - name: Install dependencies
-          run: dotnet restore
-        - name: Test with dotnet
-          run: dotnet test --logger trx --results-directory "TestResults"
-        - name: Upload dotnet test results
-          uses: actions/upload-artifact@v4
-          with:
-            name: dotnet-results
-            path: TestResults
-          # Use always() to always run this step to publish test results when there are test failures
-          if: ${{ always() }}
+      - uses: actions/checkout@v4
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build artifacts
+        run: dotnet build --configuration release
+      - name: Test with dotnet
+        run: dotnet test --logger trx --results-directory "TestResults"
+      - name: Upload dotnet test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: dotnet-results
+          path: TestResults
+        # Use always() to always run this step to publish test results when there are test failures
+        if: ${{ always() }}
+      - name: Upload library DLL
+        uses: actions/upload-artifact@v4
+        with:
+            name: Madden08.API.dll
+            path: bin/Release/net8.0/Madden08.API.dll
+      - name: Upload library dependency DLL
+        uses: actions/upload-artifact@v4
+        with:
+          name: tdbaccess.dll
+          path: bin/Release/net8.0/tdbaccess.dll
