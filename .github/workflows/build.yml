@@ -3,7 +3,7 @@ name: dotnet package
 on:
   push:
     branches:
-      - main
+      - master
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
