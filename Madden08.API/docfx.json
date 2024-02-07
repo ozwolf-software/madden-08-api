@@ -1,0 +1,46 @@
+{
+    "metadata": [
+        {
+            "src": [
+                {
+                    "src": ".",
+                    "files": [
+                        "**/*.csproj"
+                    ]
+                }
+            ],
+            "dest": "api"
+        }
+    ],
+    "build": {
+        "content": [
+            {
+                "files": [
+                    "**/*.{md,yml}"
+                ],
+                "exclude": [
+                    "_site/**"
+                ]
+            }
+        ],
+        "resource": [
+            {
+                "files": [
+                    "images/docs/logo.png"
+                ]
+            }
+        ],
+        "output": "_site",
+        "template": [
+            "default",
+            "modern"
+        ],
+        "globalMetadata": {
+            "_appName": "08 API DLL",
+            "_appTitle": "08 API DLL",
+            "_enableSearch": true,
+            "_appLogoPath": "images/docs/logo.png",
+            "pdf": true
+        }
+    }
+}

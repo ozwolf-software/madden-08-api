@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<Version>1.0.0</Version>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Title>Madden 08 API DLL</Title>
+		<Authors>OzWolf</Authors>
+		<Description>A utility library that provides domain object bridging between Madden 08 FRA and ROS files and the TDB access DLL.</Description>
+		<AssemblyName>$(MSBuildProjectName)</AssemblyName>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<Platforms>AnyCPU;x64</Platforms>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Remove="dependencies\tdbaccess.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="dependencies\tdbaccess.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<TargetPath>tdbaccess.dll</TargetPath>
+		</Content>
+	</ItemGroup>
+</Project>
