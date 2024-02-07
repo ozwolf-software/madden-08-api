@@ -1,4 +1,4 @@
-# Madden 08 DLL
+# ![Madden](Madden08.API/images/docs/logo.png) 08 API DLL
 
 This is a project built in C# on the .NET 8.0 framework specifically designed to bridge the gap between the old tdbaccess.dll file globally used in tools for the old Madden 08 game files by providing a more targetted and useful modern domain structure for other developers to utilise.
 
