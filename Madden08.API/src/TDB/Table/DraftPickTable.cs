@@ -12,7 +12,7 @@ internal class DraftPickTable: ITable<DraftPick>
 
     public DraftPick Load(TableRecord record) => new(
         Record : record.Record,
-        Overall : record.GetInt(OVERALL),
+        PickNumber: record.GetInt(OVERALL),
         OwnerId : record.GetInt(OWNERID),
         OriginalOwnerId : record.GetInt(ORIGINALOWNERID)
     );
