@@ -28,9 +28,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
             name: Madden08.API.dll
-            path: bin/Release/net8.0/Madden08.API.dll
+            path: Madden08.API/bin/Release/net8.0/Madden08.API.dll
       - name: Upload library dependency DLL
         uses: actions/upload-artifact@v4
         with:
           name: tdbaccess.dll
-          path: bin/Release/net8.0/tdbaccess.dll
+          path: Madden08.API/bin/Release/net8.0/tdbaccess.dll
