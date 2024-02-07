@@ -1,4 +1,5 @@
 - name: Getting Started
+- href: getting-started/requirements.md
 - href: getting-started/installation.md
 - href: getting-started/basic-concepts.md
   
