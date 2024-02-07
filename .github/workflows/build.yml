@@ -48,6 +48,7 @@ jobs:
           name: tdbaccess.dll
           path: Madden08.API/bin/Release/net8.0/tdbaccess.dll
   generate-docs:
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
