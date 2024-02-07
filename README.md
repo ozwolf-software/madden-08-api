@@ -3,9 +3,17 @@
 
 This is a project built in C# on the .NET 8.0 framework specifically designed to bridge the gap between the old tdbaccess.dll file globally used in tools for the old Madden 08 game files by providing a more targetted and useful modern domain structure for other developers to utilise.
 
+## Full Docs
+
+Full docs for this library can be found at [GitHub Pages](https://ozwolf-software.github.io/madden-08-api/).
+
 ## Credit
 
 This project utilises the ubiquotous `tdbaccess.dll` files produced by Artem Khassanov over at [https://www.artemkh.com/nhl/](https://www.artemkh.com/nhl/).  Without his efforts to parse the older Trivial DB file structures used by EA in the day, the games would not have enjoyed the extended life that they have.  The Madden modding community owes you a massive debt!
+
+## Download
+
+To get the latest version, visit the [Releases](https://github.com/ozwolf-software/madden-08-api/releases) page.
 
 ## Usage
 
