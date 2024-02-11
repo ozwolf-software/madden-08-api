@@ -14,6 +14,8 @@ namespace Madden08.API.Domain;
 /// <param name="NorthEastCorner">The north east corner configuration.</param>
 /// <param name="SouthWestCorner">The south west corner configuration.</param>
 /// <param name="SouthEastCorner">The south east corner configuration.</param>
+/// <param name="LightType">The type of lights used by the stadium.</param>
+/// <param name="RoofType">The type of roof used by the stadium.</param>
 public record StadiumConfiguration(
     StadiumConfiguration.Sideline EastSideline,
     StadiumConfiguration.Sideline WestSideline,
@@ -22,7 +24,9 @@ public record StadiumConfiguration(
     StadiumConfiguration.Corner NorthWestCorner,
     StadiumConfiguration.Corner NorthEastCorner,
     StadiumConfiguration.Corner SouthWestCorner,
-    StadiumConfiguration.Corner SouthEastCorner)
+    StadiumConfiguration.Corner SouthEastCorner,
+    LightType LightType,
+    RoofType RoofType)
 {
     /// <summary>
     /// The calculated total capacity of the stadium with the current configuration.
@@ -54,17 +58,33 @@ public record StadiumConfiguration(
 
     /// <summary>
     /// Update the north endzone configuration.
+    ///
+    /// If the endzone is configured with an open ended tier 2 and the stadium currently has a roof, this will be changed to 4 lights.
     /// </summary>
     /// <param name="modifier">The endzone modifier.</param>
     /// <returns>A new stadium configuration instance with the new sideline.</returns>
-    public StadiumConfiguration WithNorthEndzone(Func<Endzone, Endzone> modifier) => this with { NorthEndzone = modifier(NorthEndzone) };
+    public StadiumConfiguration WithNorthEndzone(Func<Endzone, Endzone> modifier)
+    {
+        var endzone = modifier(this.NorthEndzone);
+        var roofType = DetermineRoofType(endzone);
+        var lightType = DetermineLightType(endzone);
+        return this with { NorthEndzone = modifier(NorthEndzone), RoofType = roofType, LightType = lightType };
+    }
 
     /// <summary>
     /// Update the south endzone configuration.
+    ///
+    /// If the endzone is configured with an open ended tier 2 and the stadium currently has a roof, this will be changed to 4 lights.
     /// </summary>
     /// <param name="modifier">The endzone modifier.</param>
     /// <returns>A new stadium configuration instance with the new sideline.</returns>
-    public StadiumConfiguration WithSouthEndzone(Func<Endzone, Endzone> modifier) => this with { SouthEndzone = modifier(SouthEndzone) };
+    public StadiumConfiguration WithSouthEndzone(Func<Endzone, Endzone> modifier)
+    {
+        var endzone = modifier(this.SouthEndzone);
+        var roofType = DetermineRoofType(endzone);
+        var lightType = DetermineLightType(endzone);
+        return this with { SouthEndzone = endzone, RoofType = roofType, LightType = lightType };
+    }
 
     /// <summary>
     /// Update the north west corner configuration.
@@ -92,7 +112,30 @@ public record StadiumConfiguration(
     /// </summary>
     /// <param name="modifier">The corner modifier.</param>
     /// <returns>A new stadium configuration instance with the new sideline.</returns>
-    public StadiumConfiguration WithSouthEastCorner(Func<Corner, Corner> modifier) => this with { SouthEastCorner = modifier(SouthEastCorner)};
+    public StadiumConfiguration WithSouthEastCorner(Func<Corner, Corner> modifier) => this with { SouthEastCorner = modifier(SouthEastCorner) };
+
+    /// <summary>
+    /// Modify the stadium to use the defined light types.  This will remove any configured roof from the stadium configuration.
+    /// </summary>
+    /// <param name="lightType">The light type.</param>
+    /// <returns>A new stadium configuration instance with the new light type.</returns>
+    public StadiumConfiguration WithLights(LightType lightType) => this with { LightType = lightType, RoofType = RoofType.None };
+
+    /// <summary>
+    /// Modify the stadium to use the defined roof type.  This will remove any configured lights from the stadium configuration.
+    /// </summary>
+    /// <param name="roofType">The roof type.</param>
+    /// <returns>A new stadium configuration instance with the new light type.</returns>
+    /// <exception cref="InvalidOperationException">If you attempt to set a roof type when one of the endzones is open ended.</exception>
+    public StadiumConfiguration WithRoof(RoofType roofType)
+    {
+        if (this.NorthEndzone.Tier2 == EndzoneTier2.OpenEnded || this.SouthEndzone.Tier2 == EndzoneTier2.OpenEnded)
+            throw new InvalidOperationException("Cannot set a roof type when an endzone is configured as open ended.");
+        return this with { RoofType = roofType, LightType = LightType.None };
+    }
+
+    private RoofType DetermineRoofType(Endzone endzone) => (this.RoofType != RoofType.None && endzone.Tier2 == EndzoneTier2.OpenEnded) ? RoofType.None : RoofType;
+    private LightType DetermineLightType(Endzone endzone) => (this.RoofType != RoofType.None && endzone.Tier2 == EndzoneTier2.OpenEnded) ? LightType.FourLights : LightType;
 
     /// <summary>
     /// The <c>Corner</c> class represents a corner stadium configuration.

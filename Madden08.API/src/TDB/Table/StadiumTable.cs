@@ -36,6 +36,8 @@ internal record StadiumTable : ITable<Stadium>
     private const string WSIDELINE2 = "SP14";
     private const string WSIDELINE3 = "SP15";
     private const string GRASSTYPE = "SP21";
+    private const string LIGHTTYPE = "SP16";
+    private const string ROOFTYPE = "SP17";
 
     public string Name => TABLE;
 
@@ -81,7 +83,9 @@ internal record StadiumTable : ITable<Stadium>
             NorthWestCorner: new StadiumConfiguration.Corner(CornerSection: (StadiumSection.Corner)record.GetInt(NWCORNER)),
             NorthEastCorner: new StadiumConfiguration.Corner(CornerSection: (StadiumSection.Corner)record.GetInt(NECORNER)),
             SouthWestCorner: new StadiumConfiguration.Corner(CornerSection: (StadiumSection.Corner)record.GetInt(SWCORNER)),
-            SouthEastCorner: new StadiumConfiguration.Corner(CornerSection: (StadiumSection.Corner)record.GetInt(SECORNER))
+            SouthEastCorner: new StadiumConfiguration.Corner(CornerSection: (StadiumSection.Corner)record.GetInt(SECORNER)),
+            LightType: (StadiumSection.LightType)record.GetInt(LIGHTTYPE),
+            RoofType: (StadiumSection.RoofType)record.GetInt(ROOFTYPE)
         )
     );
 
@@ -93,36 +97,39 @@ internal record StadiumTable : ITable<Stadium>
         record.SetInt(RATING, item.Rating);
         record.SetInt(PRACTICE, (int)item.PracticeField);
         record.SetInt(GRASSTYPE, (int)item.Surface);
-        if (item.Type == StadiumType.Created)
-        {
-            record.SetInt(TOTALCAPACITY, item.TotalCapacity);
-            record.SetInt(UPPERENDZONE, item.Capacity.UpperEndZone);
-            record.SetInt(LOWERLEVEL, item.Capacity.LowerLevel);
-            record.SetInt(LUXURYBOX, item.Capacity.LuxuryBoxes);
-            record.SetInt(MIDLEVEL, item.Capacity.MidLevel);
-            record.SetInt(UPPERENDZONE, item.Capacity.UpperLevel);
-            record.SetInt(CLUBSEAT, item.Capacity.ClubSeats);
+        
+        if (item.Type != StadiumType.Created) return;
 
-            record.SetInt(ESIDELINE1, (int)item.Configuration.EastSideline.Tier1);
-            record.SetInt(ESIDELINE2, (int)item.Configuration.EastSideline.Tier2);
-            record.SetInt(ESIDELINE3, (int)item.Configuration.EastSideline.Tier3);
+        record.SetInt(TOTALCAPACITY, item.TotalCapacity);
+        record.SetInt(UPPERENDZONE, item.Capacity.UpperEndZone);
+        record.SetInt(LOWERLEVEL, item.Capacity.LowerLevel);
+        record.SetInt(LUXURYBOX, item.Capacity.LuxuryBoxes);
+        record.SetInt(MIDLEVEL, item.Capacity.MidLevel);
+        record.SetInt(UPPERENDZONE, item.Capacity.UpperLevel);
+        record.SetInt(CLUBSEAT, item.Capacity.ClubSeats);
 
-            record.SetInt(WSIDELINE1, (int)item.Configuration.WestSideline.Tier1);
-            record.SetInt(WSIDELINE2, (int)item.Configuration.WestSideline.Tier2);
-            record.SetInt(WSIDELINE3, (int)item.Configuration.WestSideline.Tier3);
+        record.SetInt(ESIDELINE1, (int)item.Configuration.EastSideline.Tier1);
+        record.SetInt(ESIDELINE2, (int)item.Configuration.EastSideline.Tier2);
+        record.SetInt(ESIDELINE3, (int)item.Configuration.EastSideline.Tier3);
 
-            record.SetInt(NENDZONE1, (int)item.Configuration.NorthEndzone.Tier1);
-            record.SetInt(NENDZONE2, (int)item.Configuration.NorthEndzone.Tier2);
-            record.SetInt(NENDZONE3, (int)item.Configuration.NorthEndzone.Tier3);
+        record.SetInt(WSIDELINE1, (int)item.Configuration.WestSideline.Tier1);
+        record.SetInt(WSIDELINE2, (int)item.Configuration.WestSideline.Tier2);
+        record.SetInt(WSIDELINE3, (int)item.Configuration.WestSideline.Tier3);
 
-            record.SetInt(SENDZONE1, (int)item.Configuration.SouthEndzone.Tier1);
-            record.SetInt(SENDZONE2, (int)item.Configuration.SouthEndzone.Tier2);
-            record.SetInt(SENDZONE3, (int)item.Configuration.SouthEndzone.Tier3);
+        record.SetInt(NENDZONE1, (int)item.Configuration.NorthEndzone.Tier1);
+        record.SetInt(NENDZONE2, (int)item.Configuration.NorthEndzone.Tier2);
+        record.SetInt(NENDZONE3, (int)item.Configuration.NorthEndzone.Tier3);
 
-            record.SetInt(NWCORNER, (int)item.Configuration.NorthWestCorner.CornerSection);
-            record.SetInt(NECORNER, (int)item.Configuration.NorthEastCorner.CornerSection);
-            record.SetInt(SWCORNER, (int)item.Configuration.SouthWestCorner.CornerSection);
-            record.SetInt(SECORNER, (int)item.Configuration.SouthEastCorner.CornerSection);
-        }
+        record.SetInt(SENDZONE1, (int)item.Configuration.SouthEndzone.Tier1);
+        record.SetInt(SENDZONE2, (int)item.Configuration.SouthEndzone.Tier2);
+        record.SetInt(SENDZONE3, (int)item.Configuration.SouthEndzone.Tier3);
+
+        record.SetInt(NWCORNER, (int)item.Configuration.NorthWestCorner.CornerSection);
+        record.SetInt(NECORNER, (int)item.Configuration.NorthEastCorner.CornerSection);
+        record.SetInt(SWCORNER, (int)item.Configuration.SouthWestCorner.CornerSection);
+        record.SetInt(SECORNER, (int)item.Configuration.SouthEastCorner.CornerSection);
+
+        record.SetInt(LIGHTTYPE, (int)item.Configuration.LightType);
+        record.SetInt(ROOFTYPE, (int)item.Configuration.RoofType);
     }
 }
