@@ -54,9 +54,9 @@ public record CoachStrategy(
     /// <summary>
     /// Change the coaches defensive playbook.
     /// </summary>
-    /// <param name="playbook">The new playbook.param>
+    /// <param name="playbook">The new playbook.</param>
     /// <returns>The updated coach strategy</returns>
-    public CoachStrategy WithDefensePlaybook(DefenseBaseFormation playbook) => this with { DefensePlaybook = playbook };
+    public CoachStrategy WithDefensePlaybook(DefensivePlaybook playbook) => this with { DefensePlaybook = playbook };
 
     /// <summary>
     /// Change the coaches defensive aggression.
