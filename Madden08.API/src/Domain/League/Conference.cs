@@ -7,6 +7,8 @@ namespace Madden08.API.Domain;
 ///
 /// Exposes the <c>Value()</c> extension;
 /// </summary>
+
+// ReSharper disable InconsistentNaming
 public enum Conference
 {
     /// <summary>AFC</summary>

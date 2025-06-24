@@ -5,6 +5,7 @@ namespace Madden08.API.Domain;
 /// <summary>
 /// The <c>PlayerPositionGroup</c> enum represents the potential groups a position can be part of.
 /// </summary>
+// ReSharper disable InconsistentNaming
 public enum PlayerPositionGroup
 {
     /// <summary>Quarterbacks</summary>

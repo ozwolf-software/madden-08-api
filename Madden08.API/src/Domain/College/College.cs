@@ -7,6 +7,8 @@ namespace Madden08.API.Domain;
 ///
 /// Exposes the <c>DisplayName()</c> extension;
 /// </summary>
+
+// ReSharper disable InconsistentNaming
 public enum College
 {
     /// <summary>Abilene Chr.</summary>

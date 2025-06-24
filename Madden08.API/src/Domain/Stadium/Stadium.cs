@@ -6,7 +6,7 @@ namespace Madden08.API.Domain;
 /// The <c>Stadium</c> class represents a stadium, either current or created, along with its age, rating and configuration.
 /// </summary>
 /// <param name="Record">The record identifier.  Used to match for writes.  <strong>Do not change.</strong></param>
-/// <param name="ID">The stadium ID.</param>
+/// <param name="Id">The stadium ID.</param>
 /// <param name="Name">The name of the stadium.</param>
 /// <param name="CityId">The city ID the stadium resides in.</param>
 /// <param name="Age">The stadium age in years.</param>
@@ -16,7 +16,7 @@ namespace Madden08.API.Domain;
 /// <param name="Surface">What type of surface the stadium has.</param>
 /// <param name="Capacity">The seat type breakdown of the stadium capacity.</param>
 /// <param name="Configuration">The stadium configuration.</param>
-public record Stadium(int Record, int ID, string Name, int CityId, int Age, int Rating, PracticeFieldType PracticeField, StadiumType Type, GrassType Surface, Capacity Capacity, StadiumConfiguration Configuration): IDomainRecord
+public record Stadium(int Record, int Id, string Name, int CityId, int Age, int Rating, PracticeFieldType PracticeField, StadiumType Type, GrassType Surface, Capacity Capacity, StadiumConfiguration Configuration): IDomainRecord
 {
     /// <summary>
     /// The total capacity of the stadium.

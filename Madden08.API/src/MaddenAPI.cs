@@ -1,4 +1,5 @@
 ﻿using Madden08.API.Domain;
+using Madden08.API.Domain.Coach;
 using Madden08.API.Domain.Common;
 
 namespace Madden08.API;
@@ -28,6 +29,7 @@ public class MaddenAPI : IDisposable
     private List<DraftPick>? _draftPicks;
     private List<Stadium>? _stadiums;
     private List<Player>? _players;
+    private List<Coach>? _coaches;
 
     private MaddenAPI(string fileName, int handle)
     {
@@ -74,6 +76,23 @@ public class MaddenAPI : IDisposable
     /// <param name="teams">The teams to update.</param>
     /// <returns>The updated list of teams.</returns>
     public List<Team> Update(List<Team> teams) => this._teams = SaveTable(Tables.Teams, teams, _teams);
+
+    /// <summary>The coaches in the file.</summary>
+    public List<Coach> Coaches => this._coaches ??= LoadTable(Tables.Coaches);
+
+    /// <summary>
+    /// Update a coach in the franchise file and receive the updated list of coaches back.
+    /// </summary>
+    /// <param name="coach">The coach to update.</param>
+    /// <returns>The updated list of coaches.</returns>
+    public List<Coach> Update(Coach coach) => this._coaches = SaveTable(Tables.Coaches, coach, _coaches);
+
+    /// <summary>
+    /// Update the provided coaches in the franchise file and receive the updated list of coaches back.
+    /// </summary>
+    /// <param name="coaches">The coaches to update.</param>
+    /// <returns>The updated list of coaches.</returns>
+    public List<Coach> Update(List<Coach> coaches) => this._coaches = SaveTable(Tables.Coaches, coaches, _coaches);
 
     /// <summary>The draft picks in the file.</summary>
     public List<DraftPick> DraftPicks => this._draftPicks ??= LoadTable(Tables.DraftPicks);

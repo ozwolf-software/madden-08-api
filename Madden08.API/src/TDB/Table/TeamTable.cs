@@ -24,7 +24,7 @@ internal class TeamTable : ITable<Team>
 
     public Team Load(TableRecord record) => new(
         Record: record.Record,
-        ID: record.GetInt(ID),
+        Id: record.GetInt(ID),
         Type: (TeamType) record.GetInt(TYPE),
         Name: record.GetString(NAME),
         NickName: record.GetString(NICKNAME),

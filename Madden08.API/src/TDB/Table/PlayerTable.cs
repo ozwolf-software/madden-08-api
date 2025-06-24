@@ -15,6 +15,8 @@ internal record PlayerTable : ITable<Player>
     private const string MORALE = "PMOR";
     private const string ALLSTAR = "PFPB";
     private const string ICON = "PICN";
+    private const string TOTALSALARY = "PTSA";
+    private const string TOTALBONUS = "PSBO";
     private const string JERSEYNUMBER = "PJEN";
     private const string SALARYYEAR1 = "PSA0";
     private const string SALARYYEAR2 = "PSA1";
@@ -53,7 +55,7 @@ internal record PlayerTable : ITable<Player>
     private const string THA = "PTHA";
     private const string PBK = "PPBK";
     private const string RBK = "PRBK";
-    private const string KPW = "PKW";
+    private const string KPW = "PKPW";
     private const string KAC = "PKAC";
     private const string STA = "PSTA";
     private const string INJ = "PINJ";
@@ -67,7 +69,7 @@ internal record PlayerTable : ITable<Player>
 
     public Player Load(TableRecord record) => new(
         Record: record.Record,
-        ID: record.GetInt(ID),
+        Id: record.GetInt(ID),
         FirstName: record.GetString(FIRSTNAME),
         LastName: record.GetString(LASTNAME),
         Position: (PlayerPosition)record.GetInt(POSITION),
@@ -85,6 +87,8 @@ internal record PlayerTable : ITable<Player>
         Icon: record.GetInt(ICON) > 0,
         TeamId: record.GetInt(TEAM),
         Contract: new PlayerContract(
+            TotalSalary: record.GetInt(TOTALSALARY) * MoneyFactor,
+            TotalBonus: record.GetInt(TOTALBONUS) * MoneyFactor,
             Length: record.GetInt(CONTRACTLENGTH),
             YearsLeft: record.GetInt(CONTRACTLEFT),
             Salaries:

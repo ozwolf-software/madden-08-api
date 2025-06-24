@@ -4,7 +4,7 @@
 /// <summary>
 /// The <c>PlayerDraftInformation</c> class represents a players education and drafted position when they entered the league.
 ///
-/// An undrafted player will 0 for round and pick.
+/// An un-drafted player will 0 for round and pick.
 /// </summary>
 /// <param name="College">The players education institution.</param>
 /// <param name="Round">The players draft round.</param>
@@ -12,7 +12,7 @@
 public record PlayerDraftInformation(College College, int Round, int Pick)
 {
     /// <summary>
-    /// The display value of their drafted position.  Shows N/A for undrafted.
+    /// The display value of their drafted position.  Shows N/A for un-drafted.
     /// </summary>
     public string DraftDisplay => Round > 0 ? $"{Round}.{Pick}" : "N/A";
 

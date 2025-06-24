@@ -9,6 +9,8 @@ namespace Madden08.API.Domain;
 /// <remarks>
 /// Exposes the <c>Value()</c> and <c>Conference()</c> extensions.
 /// </remarks>
+
+// ReSharper disable InconsistentNaming
 public enum Division
 {
     /// <summary>AFC North</summary>

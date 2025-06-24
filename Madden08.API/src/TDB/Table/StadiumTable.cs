@@ -43,7 +43,7 @@ internal record StadiumTable : ITable<Stadium>
 
     public Stadium Load(TableRecord record) => new(
         Record: record.Record,
-        ID: record.GetInt(ID),
+        Id: record.GetInt(ID),
         CityId: record.GetInt(CITY),
         Name: record.GetString(NAME),
         Age: record.GetInt(AGE),

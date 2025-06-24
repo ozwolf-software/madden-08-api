@@ -8,12 +8,12 @@ namespace Madden08.API.Domain;
 /// </summary>
 /// <param name="EastSideline">The east sideline configuration.</param>
 /// <param name="WestSideline">The west sideline configuration.</param>
-/// <param name="NorthEndzone">The north endzone configuration.</param>
-/// <param name="SouthEndzone">The south endzone configuration.</param>
-/// <param name="NorthWestCorner">The north west corner configuration.</param>
-/// <param name="NorthEastCorner">The north east corner configuration.</param>
-/// <param name="SouthWestCorner">The south west corner configuration.</param>
-/// <param name="SouthEastCorner">The south east corner configuration.</param>
+/// <param name="NorthEndzone">The north end zone configuration.</param>
+/// <param name="SouthEndzone">The south end zone configuration.</param>
+/// <param name="NorthWestCorner">The northwest corner configuration.</param>
+/// <param name="NorthEastCorner">The northeast corner configuration.</param>
+/// <param name="SouthWestCorner">The southwest corner configuration.</param>
+/// <param name="SouthEastCorner">The southeast corner configuration.</param>
 /// <param name="LightType">The type of lights used by the stadium.</param>
 /// <param name="RoofType">The type of roof used by the stadium.</param>
 public record StadiumConfiguration(

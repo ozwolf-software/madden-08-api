@@ -6,7 +6,7 @@ namespace Madden08.API.Domain;
 /// A <c>Team</c> class represents a team in the Madden franchise or roster file.
 /// </summary>
 /// <param name="Record">The record identifier.  Used to match for writes.  <strong>Do not change.</strong></param>
-/// <param name="ID">The team ID.</param>
+/// <param name="Id">The team ID.</param>
 /// <param name="Type">The team type.</param>
 /// <param name="Name">The team name (eg. Pittsburgh)</param>
 /// <param name="NickName">The team nickname (eg. Steelers)</param>
@@ -18,7 +18,7 @@ namespace Madden08.API.Domain;
 /// <param name="SalaryCap">The teams current salary cap position.</param>
 /// <param name="CurrentCapPenalty">The teams cap penalty position for this season.</param>
 /// <param name="NextYearCapPenalty">The teams cap penalty position for next season.</param>
-public record Team(int Record, int ID, TeamType Type, string Name, string NickName, string ShortName, string OtherName, int CityId, int StadiumId, Division Division, int SalaryCap, int CurrentCapPenalty, int NextYearCapPenalty): IDomainRecord
+public record Team(int Record, int Id, TeamType Type, string Name, string NickName, string ShortName, string OtherName, int CityId, int StadiumId, Division Division, int SalaryCap, int CurrentCapPenalty, int NextYearCapPenalty): IDomainRecord
 {
     internal static readonly int FreeAgencyTeamId = 1009;
 

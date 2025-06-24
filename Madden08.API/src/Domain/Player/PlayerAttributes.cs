@@ -27,6 +27,7 @@ namespace Madden08.API.Domain;
 /// <param name="IMP">The player impact.</param>
 /// <param name="TGH">The player toughness.</param>
 /// <param name="KR">The player kick return.</param>
+// ReSharper disable InconsistentNaming
 public record PlayerAttributes(int OVR, int SPD, int STR, int AWR, int AGI, int ACC, int CTH, int CAR, int JMP, int BTK, int TAK, int THP, int THA, int PBK, int RBK, int KPW, int KAC, int STA, int INJ, int IMP, int TGH, int KR)
 {
     /// <summary>

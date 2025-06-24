@@ -8,6 +8,8 @@ namespace Madden08.API.Domain;
 ///
 /// This exposes the <c>Value()</c>, IsDepthChartOnly(), and <c>SubGroup()</c> attributes.
 /// </summary>
+
+// ReSharper disable InconsistentNaming
 public enum PlayerPosition
 {
     /// <summary>Quarterback</summary>

@@ -3,15 +3,17 @@
 /// <summary>
 /// The <c>PlayerContract</c> class represents a players current contract they have.
 /// </summary>
+/// <param name="TotalSalary">The total salary of the contract.</param>
+/// <param name="TotalBonus">The total bonus of the contract.</param>
 /// <param name="Length">The total length of the contract.</param>
 /// <param name="YearsLeft">The years left on the contract.</param>
 /// <param name="Salaries">The yearly salary breakdown of the contract</param>
-public record PlayerContract(int Length, int YearsLeft, List<PlayerSalary> Salaries)
+public record PlayerContract(int TotalSalary, int TotalBonus, int Length, int YearsLeft, List<PlayerSalary> Salaries)
 {
     /// <summary>
     /// A representation of a zero contract.  Usually reserved for free agents.
     /// </summary>
-    public static readonly PlayerContract Zero = new(0, 0, Enumerable.Range(1, 7).Select(y => new PlayerSalary(y)).ToList());
+    public static readonly PlayerContract Zero = new(0, 0, 0, 0, Enumerable.Range(1, 7).Select(y => new PlayerSalary(y)).ToList());
 
     /// <summary>
     /// Return which year (1 to 7) of the contract is the current year.

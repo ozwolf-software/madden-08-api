@@ -6,7 +6,7 @@ namespace Madden08.API.Domain;
 /// The <c>Player</c> class represents a player record from the Madden file.
 /// </summary>
 /// <param name="Record">The record identifier.  Used to match for writes.  <strong>Do not change.</strong></param>
-/// <param name="ID">The player ID.</param>
+/// <param name="Id">The player ID.</param>
 /// <param name="FirstName">The players first name.</param>
 /// <param name="LastName">The players last name.</param>
 /// <param name="Position">The players position played.</param>
@@ -22,7 +22,23 @@ namespace Madden08.API.Domain;
 /// <param name="Contract">The players contract.</param>
 /// <param name="JerseyNumber">The players jersey number.</param>
 /// <param name="Attributes">The players ratings.</param>
-public record Player(int Record, int ID, string FirstName, string LastName, PlayerPosition Position, PlayerDraftInformation DraftInformation, int Age, int Height, int Weight, int YearsPro, int Morale, bool ProBowler, bool Icon, int TeamId, PlayerContract Contract, int JerseyNumber, PlayerAttributes Attributes): IDomainRecord
+public record Player(int Record, 
+                     int Id, 
+                     string FirstName, 
+                     string LastName, 
+                     PlayerPosition Position, 
+                     PlayerDraftInformation DraftInformation, 
+                     int Age, 
+                     int Height, 
+                     int Weight, 
+                     int YearsPro, 
+                     int Morale, 
+                     bool ProBowler, 
+                     bool Icon, 
+                     int TeamId, 
+                     PlayerContract Contract, 
+                     int JerseyNumber, 
+                     PlayerAttributes Attributes): IDomainRecord
 {
     /// <summary>
     /// Provide a feet and inches display of the height.

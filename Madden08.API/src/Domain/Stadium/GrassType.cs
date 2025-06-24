@@ -14,7 +14,7 @@ public enum GrassType
     Natural = 0,
 
     /// <summary>Artificial</summary>
-    [DisplayName("Artifical Turf")]
+    [DisplayName("Artificial Turf")]
     Artificial = 1,
 
     /// <summary>Baseball Diamond</summary>
